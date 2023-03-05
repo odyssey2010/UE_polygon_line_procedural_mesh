@@ -26,12 +26,14 @@ void AMyActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	FRotator Rotation = GetActorRotation();
-
-	Rotation.Roll += RotationSpeed.X * DeltaTime;	
-	Rotation.Pitch += RotationSpeed.Y * DeltaTime;	
-	Rotation.Yaw += RotationSpeed.Z * DeltaTime;
+	float Roll = RotationSpeed.X * DeltaTime;	
+	float Pitch = RotationSpeed.Y * DeltaTime;
+	float Yaw = RotationSpeed.Z * DeltaTime;
 	
-	SetActorRotation(Rotation);	
+	FQuat Curr = GetActorRotation().Quaternion();
+	FQuat Add = FRotator(Pitch, Yaw, Roll).Quaternion();
+	FQuat Rotation = Curr * Add;
+
+	SetActorRotation(Rotation);
 }
 
