@@ -28,13 +28,10 @@ void AMyActor::Tick(float DeltaTime)
 
 	FRotator Rotation = GetActorRotation();
 
-	float Roll = RotationSpeed.X * DeltaTime;	
-	float Pitch = RotationSpeed.Y * DeltaTime;
-	float Yaw = RotationSpeed.Z * DeltaTime;
-
-	FQuat Curr = GetActorRotation().Quaternion();
-	FQuat Rot = FRotator(Pitch, Yaw, Roll).Quaternion();
-	FQuat Q = Curr * Rot;
-	SetActorRotation(Q);	
+	Rotation.Roll += RotationSpeed.X * DeltaTime;	
+	Rotation.Pitch += RotationSpeed.Y * DeltaTime;	
+	Rotation.Yaw += RotationSpeed.Z * DeltaTime;
+	
+	SetActorRotation(Rotation);	
 }
 
