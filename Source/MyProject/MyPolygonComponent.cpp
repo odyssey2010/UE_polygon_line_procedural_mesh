@@ -78,6 +78,7 @@ void UMyPolygonComponent::BuildMesh()
 	{
 		Theta = FMath::DegreesToRadians(i * 360.0f / Side);
 		FMath::SinCos(&SinTheta, &CosTheta, Theta);
+		// FMath::SinCos<float>() for UE5
 
 		Point = FVector(SinTheta * Radius, CosTheta * Radius, 0.0f);
 		DirVert = FVector(0.0f, 0.0f, 1.0f);
